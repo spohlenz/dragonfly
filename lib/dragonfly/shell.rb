@@ -15,9 +15,7 @@ module Dragonfly
     end
 
     def escape_args(args)
-      args.shellsplit.map do |arg|
-        quote arg.gsub(/\\?'/, %q('\\\\''))
-      end.join(' ')
+      args.shellsplit.map(&:shellescape).join(' ')
     end
 
     def quote(string)
